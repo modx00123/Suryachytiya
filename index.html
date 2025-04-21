@@ -1,167 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sureshot by Surya</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SureShot by Surya</title>
   <style>
-    * {
+    body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-    body, html {
-      height: 100%;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial, sans-serif;
+      background: url('surya.mp4') no-repeat center center fixed;
+      background-size: cover;
       color: white;
-      overflow-y: scroll;
-    }
-    .video-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
+      text-align: center;
     }
     .overlay {
-      background: rgba(0, 0, 0, 0.75);
-      padding: 40px 20px;
-      position: relative;
-      z-index: 1;
-      min-height: 100vh;
-      animation: fadeIn 2s ease;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .title {
-      font-size: 30px;
-      font-weight: bold;
-      margin-top: 10px;
-      text-shadow: 2px 2px 5px #FFD700, -1px -1px 2px #ff6600;
-      animation: floatText 4s ease-in-out infinite;
-    }
-    @keyframes floatText {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
-    }
-    .crown {
-      color: gold;
-    }
-    .join-btn {
-      display: block;
-      margin: 30px auto;
-      padding: 15px 30px;
-      font-size: 20px;
-      background: linear-gradient(to right, #FFD700, #FFA500);
-      color: black;
-      font-weight: bold;
-      border-radius: 12px;
-      border: 2px solid white;
-      text-decoration: none;
-      box-shadow: 0 0 15px #FFD700;
-      transition: transform 0.3s ease;
-    }
-    .join-btn:hover {
-      transform: scale(1.05);
+    h1 {
+      color: yellow;
     }
     .highlight {
-      color: #FFD700;
+      background-color: yellow;
+      color: black;
+      padding: 10px 20px;
+      border-radius: 10px;
       font-weight: bold;
-      text-shadow: 1px 1px 3px #000;
+      font-size: 24px;
+      display: inline-block;
+      margin: 20px 0;
     }
     .profit-text {
-      margin-top: 15px;
-      font-size: 20px;
-      text-shadow: 1px 1px 3px #000;
-      animation: fadeInText 4s ease-in-out infinite alternate;
-    }
-    @keyframes fadeInText {
-      0% { opacity: 0.8; transform: translateX(-3px); }
-      100% { opacity: 1; transform: translateX(3px); }
+      color: yellow;
+      font-weight: bold;
     }
     .countdown {
-      margin-top: 30px;
-      font-size: 50px;
-      background: linear-gradient(to right, #000, #222);
-      padding: 20px;
+      font-size: 48px;
+      font-weight: bold;
+      background-color: black;
       border-radius: 50%;
       width: 120px;
       height: 120px;
-      margin: 30px auto;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      box-shadow: 0 0 20px #FFD700;
-      text-shadow: 1px 1px 4px #FFD700;
+      margin: 20px auto;
     }
-    .heading-2 {
-      font-size: 24px;
-      margin-top: 20px;
-      text-shadow: 2px 2px 4px #FFA500;
-      animation: floatText 4s ease-in-out infinite;
-    }
-    img {
-      margin-top: 20px;
-      max-width: 90%;
-      height: auto;
+    img.profile-img {
+      width: 300px;
       border-radius: 20px;
-      border: 3px solid white;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      margin: 20px auto;
     }
   </style>
 </head>
 <body>
-
-  <!-- Background Video from GitHub RAW -->
-  <video autoplay muted loop class="video-bg">
-    <source src="https://raw.githubusercontent.com/your-username/your-repo-name/main/surryarand.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-
   <div class="overlay">
-    <p class="profit-text">
-      India's Most Popular Color Trading Tipper, Join Our Official Telegram Channel and Earn Unlimited Money with Sure shot by Surya ... <span class="crown">👑</span>
-    </p>
-
-    <h1 class="title"><span class="crown">👑</span> SURESHOT BY SURYA <span class="crown">👑</span></h1>
-
-    <a href="https://ibb.co/pv4PtQ8">
-      <img src="https://i.ibb.co/3ySsDvqp/IMG-20250421-110612-097.jpg" alt="IMG">
-    </a>
-
-    <a href="https://t.me/+bVFjVNChfnQxNDY1" class="join-btn">JOIN OUR TELEGRAM</a>
-
-    <p class="profit-text">
-      ⚡Join karo, mere sath <span class="highlight">30,000</span> tak ka profit kamao, 99% accurate tips ke saath! 📈💪
-    </p>
-
-    <h2 class="heading-2">
-      RECOVER ALL YOUR LOSSES <br> NOW EARN 3-4K DAILY <span class="highlight">💰</span>
-    </h2>
-
-    <p class="profit-text">
-      <span class="highlight">💸</span> 50+ Users Daily Profit With Me <span class="highlight">💵</span>
-    </p>
-
-    <div class="countdown" id="timer">59<br><span style="font-size:18px;">Seconds</span></div>
-
-    <h2 class="heading-2">!! HURRY UP !!</h2>
+    <p>India's Most Popular Color Trading Tipper, Join Our Official Telegram Channel and Earn Unlimited Money with Sure shot by Surya ...</p>
+    <h1>
+      <span style="font-size: 24px"> 👑 </span>
+      SURESHOT BY SURYA
+      <span style="font-size: 24px"> 👑 </span>
+    </h1>
+    <img class="profile-img" src="https://i.ibb.co/pv4PtQ8f" alt="Surya Bhai">
+    <div class="highlight">JOIN OUR TELEGRAM</div>
+    <p class="profit-text">⚡Join karo, mere sath 30,000 tak ka profit kamao, 99% accurate tips ke saath! 📈 💪</p>
+    <h2>RECOVER ALL YOUR LOSSES<br>NOW EARN 3-4K DAILY 💰</h2>
+    <p>💸 50 + Users Daily Profit With Me 💸</p>
+    <div class="countdown">06<br><span style="font-size: 16px">Seconds</span></div>
+    <h2>!! HURRY UP !!</h2>
   </div>
-
-  <script>
-    let count = 59;
-    const timerEl = document.getElementById('timer');
-
-    setInterval(() => {
-      count--;
-      if (count < 0) count = 59;
-      timerEl.innerHTML = `${count}<br><span style=\"font-size:18px;\">Seconds</span>`;
-    }, 1000);
-  </script>
 </body>
 </html>
