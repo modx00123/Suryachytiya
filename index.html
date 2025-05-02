@@ -1,73 +1,103 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SureShot by Surya</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: url('surya.mp4') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-      text-align: center;
-    }
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 20px;
-    }
-    h1 {
-      color: yellow;
-    }
-    .highlight {
-      background-color: yellow;
-      color: black;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      font-size: 24px;
-      display: inline-block;
-      margin: 20px 0;
-    }
-    .profit-text {
-      color: yellow;
-      font-weight: bold;
-    }
-    .countdown {
-      font-size: 48px;
-      font-weight: bold;
-      background-color: black;
-      border-radius: 50%;
-      width: 120px;
-      height: 120px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 20px auto;
-    }
-    img.profile-img {
-      width: 300px;
-      border-radius: 20px;
-      margin: 20px auto;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Period Predictor</title>
+    <style>
+        body {
+            background: #000;
+            color: #00FFAA;
+            font-family: monospace;
+            margin: 0;
+            padding: 0;
+        }
+        #output {
+            font-size: 10px;
+            white-space: pre-wrap;
+        }
+    </style>
 </head>
 <body>
-  <div class="overlay">
-    <p>India's Most Popular Color Trading Tipper, Join Our Official Telegram Channel and Earn Unlimited Money with Sure shot by Surya ...</p>
-    <h1>
-      <span style="font-size: 24px"> 👑 </span>
-      SURESHOT BY SURYA
-      <span style="font-size: 24px"> 👑 </span>
-    </h1>
-    <img class="profile-img" src="https://i.ibb.co/pv4PtQ8f" alt="Surya Bhai">
-    <div class="highlight">JOIN OUR TELEGRAM</div>
-    <p class="profit-text">⚡Join karo, mere sath 30,000 tak ka profit kamao, 99% accurate tips ke saath! 📈 💪</p>
-    <h2>RECOVER ALL YOUR LOSSES<br>NOW EARN 3-4K DAILY 💰</h2>
-    <p>💸 50 + Users Daily Profit With Me 💸</p>
-    <div class="countdown">06<br><span style="font-size: 16px">Seconds</span></div>
-    <h2>!! HURRY UP !!</h2>
-  </div>
+    <div id="output"></div>
+
+    <script>
+        const output = document.getElementById('output');
+        let lastPeriod = "";
+
+        function getCurrentPeriod() {
+            const now = new Date();
+            const utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+            const dateStr = utc.toISOString().slice(0, 10).replace(/-/g, '');
+            const totalMinutes = utc.getUTCHours() * 60 + utc.getUTCMinutes();
+            return dateStr + "1000" + (10001 + totalMinutes);
+        }
+
+        function predictAndDisplay(period) {
+            const last4 = period.slice(-4);
+            let sum = 0;
+            for (let c of last4) {
+                sum += parseInt(c);
+            }
+            const result = sum % 10;
+            const display = result >= 5 ? "BIG" : "SMALL";
+
+            let sureNumber, emoji;
+            const rand = Math.floor(Math.random() * 5);
+            if (display === "SMALL") {
+                sureNumber = [0, 1, 2, 3, 4][rand];
+                emoji = ["🟣", "🟢", "🔴", "🟢", "🔴"][rand];
+            } else {
+                sureNumber = [5, 6, 7, 8, 9][rand];
+                emoji = ["🟣", "🔴", "🟢", "🔴", "🟢"][rand];
+            }
+
+            const resultText = `${display} ${sureNumber} ${emoji} SURESHOT`;
+
+            const steps = [
+                "PROCESSING 10%  [█▒▒▒▒▒▒▒▒▒]",
+                "PROCESSING 20%  [██▒▒▒▒▒▒▒▒]",
+                "PROCESSING 30%  [███▒▒▒▒▒▒▒]",
+                "PROCESSING 40%  [████▒▒▒▒▒▒]",
+                "PROCESSING 50%  [█████▒▒▒▒▒]",
+                "PROCESSING 60%  [██████▒▒▒▒]",
+                "PROCESSING 70%  [███████▒▒▒]",
+                "PROCESSING 80%  [████████▒▒]"
+            ];
+
+            const header =
+                ">>> SCRIPT V.2 :: PERIOD_PREDICTOR()\n\n" +
+                "[SURESHOT] Analyzing...\n\n";
+
+            const footer =
+                `\n\n[CONNECTED] PERIOD → ${period}\n\n` +
+                `[PREDICTION] ${resultText}\n\n# SCRIPT EXECUTED SUCCESSFULLY`;
+
+            output.textContent = "";
+            setTimeout(() => {
+                output.textContent = header;
+                steps.forEach((step, i) => {
+                    setTimeout(() => {
+                        output.textContent += step + '\n';
+                    }, 500 * (i + 1));
+                });
+                setTimeout(() => {
+                    output.textContent += footer;
+                }, 500 * (steps.length + 1));
+            }, 100);
+        }
+
+        setInterval(() => {
+            const currentPeriod = getCurrentPeriod();
+            if (currentPeriod !== lastPeriod) {
+                lastPeriod = currentPeriod;
+                try {
+                    predictAndDisplay(currentPeriod);
+                } catch (e) {
+                    output.style.color = "red";
+                    output.textContent = "!! ERROR: INVALID PERIOD NUMBER !!";
+                }
+            }
+        }, 1000);
+    </script>
 </body>
 </html>
