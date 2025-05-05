@@ -14,6 +14,7 @@
         #output {
             font-size: 10px;
             white-space: pre-wrap;
+            padding: 10px;
         }
     </style>
 </head>
@@ -23,6 +24,7 @@
     <script>
         const output = document.getElementById('output');
         let lastPeriod = "";
+        let countdownSeconds = 60;
 
         function getCurrentPeriod() {
             const now = new Date();
@@ -32,8 +34,15 @@
             return dateStr + "1000" + (10001 + totalMinutes);
         }
 
-        function predictAndDisplay(period) {
-            const last4 = period.slice(-4);
+        function getFormattedCountdown() {
+            const now = new Date();
+            const seconds = now.getUTCSeconds();
+            const remaining = 60 - seconds;
+            return `00 : ${String(remaining).padStart(2, '0')}`;
+        }
+
+        function predictAndDisplay() {
+            const last4 = lastPeriod.slice(-4);
             let sum = 0;
             for (let c of last4) {
                 sum += parseInt(c);
@@ -71,8 +80,8 @@
                 "[SURESHOT] Analyzing...\n\n";
 
             const footer =
-                `\n\n[CONNECTED] PERIOD → ${period}\n\n` +
-                `[PREDICTION] ${resultText}\n\n# SCRIPT EXECUTED SUCCESSFULLY`;
+                `\n\n[PREDICTION] ${resultText}\n\n` +
+                `NEXT RESULT :- ${getFormattedCountdown()}`;
 
             output.textContent = "";
             setTimeout(() => {
@@ -88,16 +97,25 @@
             }, 100);
         }
 
+        function updateCountdownOnly() {
+            if (output.textContent.includes("NEXT RESULT :-")) {
+                const updated = output.textContent.replace(/NEXT RESULT :- .*/, `NEXT RESULT :- ${getFormattedCountdown()}`);
+                output.textContent = updated;
+            }
+        }
+
         setInterval(() => {
             const currentPeriod = getCurrentPeriod();
             if (currentPeriod !== lastPeriod) {
                 lastPeriod = currentPeriod;
                 try {
-                    predictAndDisplay(currentPeriod);
+                    predictAndDisplay();
                 } catch (e) {
                     output.style.color = "red";
-                    output.textContent = "!! ERROR: INVALID PERIOD NUMBER !!";
+                    output.textContent = "!! ERROR: INVALID PERIOD !!";
                 }
+            } else {
+                updateCountdownOnly();
             }
         }, 1000);
     </script>
